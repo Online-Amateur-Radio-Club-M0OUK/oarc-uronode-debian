@@ -19,7 +19,6 @@ NON_INTERACTIVE	:= 1
 %:
 	dh $@
 
-
 #override_dh_auto_install:
 #	$(MAKE) DESTDIR=$$(pwd)/debian/uronode prefix=/usr install
 

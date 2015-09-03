@@ -1,0 +1,32 @@
+Description: Update the folders this is installed to
+Author: Dave Hibberd <d@vehibberd.com>
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/configure
++++ b/configure
+@@ -1,5 +1,5 @@
+ #!/bin/sh
+-
++NON_INTERACTIVE == 1
+ _sleep()
+ {
+   [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
+@@ -14,12 +14,12 @@
+ _sleep 2
+ make distclean > make.debug
+ 
+-ETC_DIR=/usr/local/etc/ax25
+-SBIN_DIR=/usr/local/sbin
+-BIN_DIR=/usr/local/bin
+-LIB_DIR=/usr/local/lib
+-MAN_DIR=/usr/local/share/man
+-VAR_DIR=/usr/local/var/ax25
++ETC_DIR=debian/uronode/etc/ax25
++SBIN_DIR=debian/uronode/usr/sbin
++BIN_DIR=debian/uronode/usr/bin
++LIB_DIR=debian/uronode/usr/lib
++MAN_DIR=debian/uronode/usr/share/man
++VAR_DIR=debian/uronode/usr/var/ax25
+ 
+ echo "Welcome to the configuration utility for URONode. This configure script"
+ echo "will very simply and easily guide you into installling URONode with as"
