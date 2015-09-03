@@ -1,0 +1,2 @@
+Manpages from upstream have been patched out due to being supplied as
+gzipped files. They have been unzipped and moved to debian/manpages.
