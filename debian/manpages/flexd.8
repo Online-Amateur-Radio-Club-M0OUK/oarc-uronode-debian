@@ -1,0 +1,34 @@
+.TH URONODE 8 "2 September 2015" Linux "Linux System Managers Manual"
+.SH NAME
+flexd \- 
+.SH SYNOPSIS
+.B flexd
+.SH DESCRIPTION
+.LP
+.B flexd 
+queries a neighbouring flexnet node for its reachable
+destinations.  These destinations are stored locally and are available
+within uronode to be queried using the Dest command or connected to
+using: Connect <destination>
+.SH FILES
+.LP
+.TP 5 
+.B /etc/flexd.conf
+flexd configuration file.
+.SH "SEE ALSO"
+.BR uronode (8),
+.BR uronode.conf (5),
+.BR uronode.perms (5),
+.BR axports (5),
+.BR ax25d (8),
+.BR mheardd (8).
+.SH AUTHOR
+Brian Rogers N1URO <n1uro@n1uro.com>
+.SH THANKS TO
+Stefano Noferi IZ5AWZ <iz5awz@radio-gw.cnuce.cnr.it>
+.br
+Tomi Manninen OH2BNS <tpmannin@cc.hut.fi>
+.br 
+Alan Cox GW4PTS <gw4pts@gw4pts.ampr.org>
+.br 
+Roy PE1RJA <roy@esrac.ele.tue.nl>
