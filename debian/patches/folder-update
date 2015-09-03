@@ -7,7 +7,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -1,5 +1,5 @@
  #!/bin/sh
 -
-+NON_INTERACTIVE == 1
++NON_INTERACTIVE="1"
  _sleep()
  {
    [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
@@ -26,7 +26,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +BIN_DIR=debian/uronode/usr/bin
 +LIB_DIR=debian/uronode/usr/lib
 +MAN_DIR=debian/uronode/usr/share/man
-+VAR_DIR=debian/uronode/usr/var/ax25
++VAR_DIR=debian/uronode/var/lib/ax25
  
  echo "Welcome to the configuration utility for URONode. This configure script"
  echo "will very simply and easily guide you into installling URONode with as"

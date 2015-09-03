@@ -1,0 +1,10 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -33,6 +33,7 @@
+ 	install -m 644    -p etc/gateways	 $(VAR_DIR)/flex
+ 	
+ installbin: all
++	install -m 755    -D -d $(SBIN_DIR)
+ 	install -m 755 	-s -p	uronode		$(SBIN_DIR)
+ 	install -m 755  -s -p	nodeusers	$(SBIN_DIR)
+ 	install -m 755  -s -p	axdigi		$(SBIN_DIR)
