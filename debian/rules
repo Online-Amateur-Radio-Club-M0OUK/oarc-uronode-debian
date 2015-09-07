@@ -1,26 +1,11 @@
 #!/usr/bin/make -f
 
-# DH_VERBOSE := 1
-
-# some helpful variables - uncomment them if needed
-# shamelessly stolen from http://jmtd.net/log/awk/
-#DEBVERS        := $(shell dpkg-parsechangelog | awk '/^Version:/ {print $$2}')
-#VERSION        := $(shell echo '$(DEBVERS)' | sed -e 's/^[0-9]*://' -e 's/-.*//')
-#DEBFLAVOR      := $(shell dpkg-parsechangelog | awk '/^Distribution:/ {print $$2}')
-#DEBPKGNAME     := $(shell dpkg-parsechangelog | awk '/^Source:/ {print $$2}')
-#DEBIAN_BRANCH  := $(shell awk 'BEGIN{FS="[= ]+"} /debian-branch/ {print $$2}' debian/gbp.conf)
-#GIT_TAG        := $(subst ~,_,$(VERSION))
-NON_INTERACTIVE	:= 1
-# alternatively to manually set those variables you can
-#  include /usr/share/cdbs/1/rules/buildvars.mk
-# and use what is set there.  Any hint whether dh might set variables in
-# a similar manner are welcome.
 
 %:
 	dh $@
 
-#override_dh_auto_install:
-#	$(MAKE) DESTDIR=$$(pwd)/debian/uronode prefix=/usr install
+# Collapse upstream changes file into single file
 
-#get-orig-source:
-#	. debian/get-orig-source
+override_dh_auto_build:
+	cat CHANGES.* > changelog
+	dh_auto_build
