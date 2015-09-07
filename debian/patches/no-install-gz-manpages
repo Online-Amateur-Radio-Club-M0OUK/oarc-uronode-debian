@@ -1,23 +1,9 @@
-Description: Remove CFLAG and LDFlags for hardening, remove installman 
-to stop installation of gzipped manpages, added directory install for
-SBIN_DIR
+Description: Prevent installation of gzipped manpages, they have been moved to the debian folder and unzipped
 Author: Dave Hibberd <d@vehibberd.com>
----
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Last-Update: 2015-09-07
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -3,8 +3,8 @@
- CC = gcc
- LD = gcc
- # CFLAGS = -O2 -g -s -Wstrict-prototypes
--CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
--LDFLAGS =
-+#CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
-+#LDFLAGS =
- LIBS = -lax25 -lax25io
- 
- include Makefile.include
 @@ -24,7 +24,7 @@
  .c.o:
  	$(CC) $(CFLAGS) -c $<
@@ -27,15 +13,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  	install -m 755    -D -d	$(VAR_DIR)
  	install -m 755    -D -d	$(VAR_DIR)/node
  	install -m 644    -p etc/loggedin	$(VAR_DIR)/node
-@@ -33,6 +33,7 @@
- 	install -m 644    -p etc/gateways	 $(VAR_DIR)/flex
- 	
- installbin: all
-+	install -m 755    -D -d $(SBIN_DIR)
- 	install -m 755 	-s -p	uronode		$(SBIN_DIR)
- 	install -m 755  -s -p	nodeusers	$(SBIN_DIR)
- 	install -m 755  -s -p	axdigi		$(SBIN_DIR)
-@@ -53,16 +54,7 @@
+@@ -53,16 +53,7 @@
  	install -m 600    -p etc/uronode.routes   $(ETC_DIR)
  	install -m 600    -p etc/flexd.conf  $(ETC_DIR)
  

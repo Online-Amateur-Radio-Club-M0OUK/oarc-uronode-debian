@@ -1,0 +1,17 @@
+Description: Remove CFLAGS and LDFLAGS to fix Lintian hardening errors
+Author: Dave Hibberd <d@vehibberd.com>
+Last-Update: 2015-09-07
+
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -3,8 +3,8 @@
+ CC = gcc
+ LD = gcc
+ # CFLAGS = -O2 -g -s -Wstrict-prototypes
+-CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
+-LDFLAGS =
++#CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
++#LDFLAGS =
+ LIBS = -lax25 -lax25io
+ 
+ include Makefile.include

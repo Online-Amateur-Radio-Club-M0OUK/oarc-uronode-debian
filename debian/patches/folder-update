@@ -1,7 +1,7 @@
-Description: Update the folders this is installed to
+Description: Update the folders in which Uronode is installed
 Author: Dave Hibberd <d@vehibberd.com>
----
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Last-Update: 2015-09-07
+
 --- a/configure
 +++ b/configure
 @@ -1,5 +1,5 @@

@@ -1,2 +1,4 @@
+remove-cflags
 folder-update
-makefile
+no-install-gz-manpages
+install-dir-creation
