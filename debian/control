@@ -12,6 +12,8 @@ Homepage: http://uronode.sourceforge.net/
 Package: uronode
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: ax25-node
+Replaces: ax25-node
 Description: Node front end for AX.25, NET/ROM, Rose and TCP
  URONode is a packet radio node front end for amateur radio operators.
  It provides a shell modelled after those of LinuxNode, AWZNode and
