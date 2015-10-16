@@ -1,0 +1,27 @@
+Description: Install files to temporary directory for packaging
+Author: Dave Hibberd <d@vehibberd.com>
+Last-Update: 2015-10-16
+
+--- a/Makefile.include.in
++++ b/Makefile.include.in
+@@ -2,12 +2,12 @@
+ ARCH		= @ARCH@
+ 
+ # Paths
+-ETC_DIR		= @ETC_DIR@
+-SBIN_DIR	= @SBIN_DIR@
+-BIN_DIR		= @BIN_DIR@
+-LIB_DIR		= @LIB_DIR@
+-MAN_DIR		= @MAN_DIR@
+-VAR_DIR		= @VAR_DIR@
++ETC_DIR		= debian/uronode@ETC_DIR@
++SBIN_DIR	= debian/uronode@SBIN_DIR@
++BIN_DIR		= debian/uronode@BIN_DIR@
++LIB_DIR		= debian/uronode@LIB_DIR@
++MAN_DIR		= debian/uronode@MAN_DIR@
++VAR_DIR		= debian/uronode@VAR_DIR@
+ 
+ # Is Zlib available?
+-ZLIB		= @ZLIB@
+\ No newline at end of file
++ZLIB		= @ZLIB@

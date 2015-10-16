@@ -1,6 +1,6 @@
 Description: Update the folders in which Uronode is installed
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2015-09-07
+Last-Update: 2015-10-16
 
 --- a/configure
 +++ b/configure
@@ -21,12 +21,12 @@ Last-Update: 2015-09-07
 -LIB_DIR=/usr/local/lib
 -MAN_DIR=/usr/local/share/man
 -VAR_DIR=/usr/local/var/ax25
-+ETC_DIR=debian/uronode/etc/ax25
-+SBIN_DIR=debian/uronode/usr/sbin
-+BIN_DIR=debian/uronode/usr/bin
-+LIB_DIR=debian/uronode/usr/lib
-+MAN_DIR=debian/uronode/usr/share/man
-+VAR_DIR=debian/uronode/var/lib/ax25
++ETC_DIR=/etc/ax25
++SBIN_DIR=/usr/sbin
++BIN_DIR=/usr/bin
++LIB_DIR=/usr/lib
++MAN_DIR=/usr/share/man
++VAR_DIR=/var/lib/ax25
  
  echo "Welcome to the configuration utility for URONode. This configure script"
  echo "will very simply and easily guide you into installling URONode with as"
