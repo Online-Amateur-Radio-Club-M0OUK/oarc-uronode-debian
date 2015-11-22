@@ -110,7 +110,7 @@ int loadavg(double *av1, double *av5, double *av15) {
    labels which do not *begin* with digits, though.
 */
 
-#define MAX_ROW 27	/* these are a little liberal for flexibility */
+#define MAX_ROW 22	/* these are a little liberal for flexibility */
 #define MAX_COL 2
 
 unsigned** meminfo(void) {
