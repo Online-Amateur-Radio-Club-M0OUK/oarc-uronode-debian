@@ -55,20 +55,19 @@ installconf: installhelp
 
 installman:
 	install -m 755	  -D -d $(MAN_DIR)/man1 $(MAN_DIR)/man5 $(MAN_DIR)/man8
-	install -m 644    -p man/nodeusers.1.gz  $(MAN_DIR)/man1
-	install -m 644    -p man/uronode.conf.5.gz  $(MAN_DIR)/man5
-	install -m 644    -p man/uronode.perms.5.gz $(MAN_DIR)/man5
-	install -m 644    -p man/flexd.conf.5.gz $(MAN_DIR)/man5
-	install -m 644    -p man/uronode.8.gz       $(MAN_DIR)/man8
-	install -m 644	  -p man/axdigi.8.gz	 $(MAN_DIR)/man8
+	install -m 644    -p man/nodeusers.1  $(MAN_DIR)/man1
+	install -m 644    -p man/uronode.conf.5  $(MAN_DIR)/man5
+	install -m 644    -p man/uronode.perms.5 $(MAN_DIR)/man5
+	install -m 644    -p man/flexd.conf.5 $(MAN_DIR)/man5
+	install -m 644    -p man/uronode.8       $(MAN_DIR)/man8
+	install -m 644	  -p man/axdigi.8	 $(MAN_DIR)/man8
+	install -m 644	  -p man/flexd.8	 $(MAN_DIR)/man8
 
 upgrade: installman
 	install -m 755 -p uronode       $(SBIN_DIR)
 	install -m 755 -p nodeusers     $(SBIN_DIR)
 	install -m 755 -p flexd		$(SBIN_DIR)
 	install -m 755 -p axdigi	$(SBIN_DIR)
-	install -m 644 -p uronode.conf	$(ETC_DIR)
-	install -m 644 -p uronode.perms $(ETC_DIR)
  
 clean:
 	rm -f *.o *~ *.bak *.orig make.debug nodeusers uronode flexd axdigi
@@ -93,7 +92,7 @@ flexd: $(FLEXD_OBJS)
 	$(LD) $(LDFLAGS) -o flexd $(FLEXD_OBJS) $(LIBS) $(ZLIB)
 
 axdigi: $(DIGI_OBJS)
-	$(LD) $(LDFLAGS) -o axdigi $(DIGI_OBJS) 
+	$(LD) $(LDFLAGS) -o axdigi $(DIGI_OBJS) $(LIBS)
 
 ifeq (.depend,$(wildcard .depend))
 include .depend

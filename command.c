@@ -96,7 +96,7 @@ void node_prompt(const char *fmt, ...)
   if ((User.ul_type == AF_ROSE) && (check_perms(PERM_ANSI, 0L) != -1)) {
    axio_printf(NodeIo,"\r\e[01;35m-=>\e[0m  \b");
   }
-  axio_flush(NodeIo);
+/*  axio_flush(NodeIo); */
 }
 
 void node_logout(char *reason)
@@ -795,7 +795,7 @@ int do_status(int argc, char **argv)
     axio_printf(NodeIo,"------------------ ---------- ---------- ---------- ----------\n");
     axio_printf(NodeIo,"Physical:          %-7d kB %-7d kB %-7d kB %3d %%\n", ma, mu, mf, (mu*100)/ma);
     
-    if  (!(mem = meminfo()) || mem[meminfo_stotal][meminfo_total] != 0) 
+    if  (!(mem = meminfo()) || mem[meminfo_stotal][meminfo_total] != 0)  
 { 
     sa = mem[meminfo_stotal][meminfo_total]; 
     su = (mem[meminfo_stotal][meminfo_total] - mem[meminfo_sfree][meminfo_total]);
@@ -803,7 +803,7 @@ int do_status(int argc, char **argv)
     axio_printf(NodeIo,"Swap:              %-7d kB %-7d kB %-7d kB %3d %%\n",sa,su,sf,(su*100)/sa);   
     } 
     else 
-/*    axio_printf(NodeIo,"Cannot get swap information!\n"); */
+    axio_printf(NodeIo,"Cannot get swap information!\n"); 
       axio_printf(NodeIo," ");
     
   }

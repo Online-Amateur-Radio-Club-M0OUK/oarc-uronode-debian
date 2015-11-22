@@ -239,7 +239,7 @@ int main(int argc, char *argv[])
   if (User.call[0] == 0) {
     axio_printf(NodeIo,"(%s:uronode) login: ", HostName);
     axio_flush(NodeIo);
-    alarm(60L);			/* 1 min timeout */
+    alarm(180L);		/* 3 min timeout */
     if ((p = axio_getline(NodeIo)) == NULL)
       node_logout("User disconnected");
     alarm(0L);
@@ -259,8 +259,8 @@ int main(int argc, char *argv[])
     node_log(LOGLVL_LOGIN, "Login denied for %s @ %s", User.call, User.ul_name);
     node_logout("Login denied");
   } else if (strcmp(pw, "*") != 0) {
-    node_msg("*** Password required! If you don't have a password please email\r\n%s for a password you wish to use.", Email);
-    axio_printf(NodeIo,"\rPassword: ");
+    axio_printf(NodeIo,"*** Password required! If you don't have a password please email\n%s for a password you wish to use.", Email);
+    axio_printf(NodeIo,"\nPassword: ");
     if (User.ul_type == AF_INET) {
       axio_tn_will_echo(NodeIo);
       axio_eolmode(NodeIo, EOLMODE_BINARY);
@@ -272,6 +272,9 @@ int main(int argc, char *argv[])
       axio_eolmode(NodeIo, EOLMODE_TEXT);
       /*			axio_puts("\n",NodeIo); */
     }
+   if ((User.ul_type == AF_NETROM) && (strcmp(p, pw) == 0)) {
+      node_msg("%s} Welcome.", NodeId);
+   }
     if (p == NULL || strcmp(p, pw) != 0) {
       axio_printf(NodeIo, "\n");
       if (User.ul_type == AF_NETROM) {
@@ -301,7 +304,7 @@ int main(int argc, char *argv[])
       if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
 	while (fgets(buf,256, fp) != NULL) axio_puts(buf,NodeIo);
 	axio_printf (NodeIo, "\n");
-	axio_flush(NodeIo);
+/*	axio_flush(NodeIo); */
       }
     } else if (User.ul_type == AF_AX25) { 
       if (check_perms(PERM_ANSI, 0L) != -1) {
@@ -311,14 +314,14 @@ int main(int argc, char *argv[])
       if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
 	while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
 	axio_puts ("\n",NodeIo);
-	axio_flush(NodeIo);
+/*	axio_flush(NodeIo); */
       } 
     } else if (User.ul_type == AF_ROSE) {
 	node_msg("%s - Welcome to %s", VERSION, RoseId);
         if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
         while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
         axio_puts ("\n",NodeIo);
-        axio_flush(NodeIo);
+/*        axio_flush(NodeIo); */
       }      
     }
   lastlog();
@@ -327,7 +330,7 @@ int main(int argc, char *argv[])
   while (1) { if (User.ul_type != AF_NETROM) {
       axio_flush(NodeIo);
       if (check_perms(PERM_ANSI, 0L) != -1) {
-	axio_printf(NodeIo,"\e[01;34");
+	axio_printf(NodeIo,"\e[01;34m");
       }
       if (no_password == 2) 	{ 
 	node_prompt();

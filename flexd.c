@@ -117,7 +117,7 @@ void read_conf(void)
 int download_dest(char *gateway, char *fname)
 {
   FILE *tmp;
-  char buffer[1024], port[14], path[AX25_MAX_DIGIS*10];
+  char buffer[256], port[14], path[AX25_MAX_DIGIS*10];
   char *addr, *commands[10], *dlist[9]; /* Destination + 8 digipeaters */
   fd_set read_fd;
   int n, addrlen, cmd_send=0, cmd_ack=0, c, k;
@@ -390,6 +390,7 @@ void quit_handler(int sig)
   
   signal(SIGTERM, sigterm_defhnd);
   raise(SIGTERM);
+  return;
 }
 
 int main(int argc, char *argv[])
@@ -410,7 +411,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  signal(SIGTERM, quit_handler);
+//  signal(SIGTERM, quit_handler);
   pidfile = fopen(FLEXD_PID_FILE, "w");
   fprintf(pidfile, "%d\n", (int)getpid());
   fclose(pidfile);
@@ -420,8 +421,8 @@ int main(int argc, char *argv[])
   signal(SIGHUP, hup_handler);
   signal(SIGALRM, alarm_handler);
   sigterm_defhnd = signal(SIGTERM, quit_handler);
-  if (sigterm_defhnd == SIG_ERR)
-    sigterm_defhnd = SIG_DFL;
+//  if (sigterm_defhnd == SIG_ERR)
+//    sigterm_defhnd = SIG_DFL;
   alarm(poll_time); 
   
   for(;;) pause();

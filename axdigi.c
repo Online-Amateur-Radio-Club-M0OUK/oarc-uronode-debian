@@ -1,6 +1,7 @@
 /* 
  * axdigi: Cross and straight port digipeater program
  * Copyright (C) 1995 Craig Small VK2XLZ
+ * modificatioins 2012-present Brian N1URO
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,7 +33,10 @@
 /* below added by N1URO */
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <linux/ax25.h>
+/* added by N1URO */
+#include <netax25/daemon.h>
 
 int recv_packet(unsigned char *buf, int size, unsigned char *port);
 void print_call(unsigned char *buf);
@@ -48,12 +52,26 @@ void get_interfaces(int skt);
 #define REPEATED 0x80	/* Has-been-repeated bit */
 #define MAX_PORTS 16
 #define VERSION "0.2"
-
+#define AXDIGI_PID_FILE  "/var/run/axdigi.pid"
 int port_count = 0;
 unsigned char portname[MAX_PORTS][20];
 unsigned char portcall[MAX_PORTS][8];
 
+void(*sigterm_defhnd)(int);
 
+static void quit_handler(int sig)
+{
+  signal(SIGTERM, SIG_IGN);
+
+  unlink(AXDIGI_PID_FILE);
+
+//  signal(SIGTERM, sigterm_defhnd);
+  signal(SIGTERM, quit_handler);
+  raise(SIGTERM);
+  unlink(AXDIGI_PID_FILE);
+  system("rm -f /var/run/axdigi.pid");
+  return;
+}
 
 int main(int argc, char *argv[])
 {
@@ -63,12 +81,27 @@ int main(int argc, char *argv[])
   struct sockaddr sa;
   int asize;
 	
+
+  system("rm -f /var/run/axdigi.pid");
+
+  FILE *pidfile;
+
+//  signal(SIGALRM, alarm_handler);
+//  signal(SIGTERM, term_handler);
+//  signal(SIGPIPE, quit_handler);
+//  signal(SIGQUIT, quit_handler);
+
+//  pidfile = fopen(AXDIGI_PID_FILE, "w");
+//  fprintf(pidfile, "%d\n", (int)getpid());
+//  fclose(pidfile);
+
   /* Check our huge range of flags */
   if (argc > 1)
     {
       if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "-h") ==0)
 	{
-	  printf("axdigi version %s. Copyright (C) 1995 Craig Small VK2XLZ\n\n", VERSION);
+	  printf("axdigi version %s. Copyright (C) 1995 Craig Small VK2XLZ\n", VERSION);
+	  printf("modificatiions 2012-present by Brian N1URO\n\n");
 	  printf("axdigi comes with ABSOLUTELY NO WARRANTY.\n");
 	  printf("This is free software, and you are welcome to redistribute it\n");
 	  printf("under the terms of GNU General Public Licence as published\n");
@@ -76,13 +109,25 @@ int main(int argc, char *argv[])
 	  printf("(at your option) any later version.\n");
 	  return 0;
 	}
-    }		
+    }
+
+/* Routine to daemonize - added by N1URO */
+if (!daemon_start(TRUE)) {
+   fprintf(stderr, "Sorry, axdigi cannot become a daemon\n");
+   return 1;
+   }
+
 /* Change to keep code more modern - N1URO */
   if ((skt = socket(PF_PACKET, SOCK_PACKET, htons(ETH_P_AX25))) == -1)
     {
       perror("socket");
       return(1);
     }
+
+  pidfile = fopen(AXDIGI_PID_FILE, "w");
+  fprintf(pidfile, "%d\n", (int)getpid());
+  fclose(pidfile);
+
   get_interfaces(skt);
 	
   while(1)
@@ -107,7 +152,9 @@ int main(int argc, char *argv[])
 	  /*			printf("Unknown port %s\n", sa.sa_data);*/
 	} /* recv_packet true */
     } /* while(1) */
+
   close(skt);
+//  system("rm -f /var/run/axdigi.pid");
 }
 
 int recv_packet(unsigned char *buf, int size, unsigned char *port)
@@ -252,4 +299,3 @@ void get_interfaces(int skt)
 	}
     } /* for */
 }	
-		

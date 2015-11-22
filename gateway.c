@@ -650,7 +650,7 @@ int do_connect(int argc, char **argv)
        else if (find_node(argv[1], NULL)!=NULL) { 
        family = AF_NETROM;
        } */
-	
+#ifdef HAVE_AUTOROUTE	
     else if ((ax=find_mheard(argv[1]))!=NULL) { /* Check Mheard database */
       k=1;
       /*	K2MF supplied code	*/
@@ -677,11 +677,14 @@ int do_connect(int argc, char **argv)
       argv[k]=NULL; 
       argc=k;
       family = AF_AX25;
-    } else {  /* Give up */
+
+    } 
+#endif
+      else {  /* Give up */
       if (User.ul_type == AF_NETROM) {
 	axio_printf(NodeIo,"%s} ", NodeId);
       }
-      axio_printf(NodeIo,"Remote not in Desti, NetRom, or MHeard tables. Retry your entry.");
+      axio_printf(NodeIo,"Remote not found, please retry your entry.");
       family = AF_UNSPEC;
       //      free_flex_dst(flx);
       //      free_ax_routes(ax);
@@ -771,6 +774,16 @@ int do_connect(int argc, char **argv)
     }
     axio_printf(NodeIo,"\nReturning you to the shell... ");
   } else
+      if ((User.ul_type == AF_AX25) && (!stay)) {
+  axio_flush(NodeIo);
+  axio_end_all();
+  logout_user();
+  ipc_close();
+  node_log(LOGLVL_LOGIN, "%s @ %s logged out", User.call, User.ul_name);
+  free_cmdlist(Nodecmds);
+  Nodecmds = NULL;
+  exit(0);
+  }
     if (User.ul_type == AF_AX25) {
       if (check_perms(PERM_ANSI, 0L) != -1) {
 	axio_printf(NodeIo,"\e[01;31m");
