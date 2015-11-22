@@ -6,6 +6,10 @@
 
 # Collapse upstream changes file into single file
 
+override_dh_auto_install:
+	rm --verbose calibrate
+	dh_auto_install
+
 override_dh_auto_build:
 	cat CHANGES.* > changelog
 	dh_auto_build
