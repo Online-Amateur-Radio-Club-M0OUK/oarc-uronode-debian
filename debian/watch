@@ -1,4 +1,5 @@
 version=3
-
-http://sf.net/uronode/uronode-(\d[\d\.]+)\.(?:tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
-
+opts=dversionmangle=s/\+dfsg$// \
+	http://sf.net/uronode/uronode-(\d[\d\.]+)\.(?:tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
+	export REPACK_SH=debian/repack.sh 
+	debian sh debian/repack.stub
