@@ -69,10 +69,10 @@ static void alarm_handler(int sig)
   if ((User.ul_type == AF_AX25) || (User.ul_type == AF_ROSE)) {
     node_msg("Inactivity timeout! Disconnecting you... ");
   }
-  if (User.ul_type ==  AF_INET) {
+  if ((User.ul_type ==  AF_INET) || (User.ul_type == AF_INET6)) {
     node_msg("Inactivity timeout! Disconnecting you...");
   }
-  if (User.ul_type == AF_INET) {
+  if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
     if (check_perms(PERM_ANSI, 0L) != -1) {
       axio_printf(NodeIo,"\e[0;m");
     }
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
     axio_compr(NodeIo, 1);
   }
 #endif
-  if (User.ul_type == AF_INET) {
+  if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
     axio_tnmode(NodeIo, 1);
     axio_tn_do_linemode(NodeIo);
   }
@@ -261,13 +261,13 @@ int main(int argc, char *argv[])
   } else if (strcmp(pw, "*") != 0) {
     axio_printf(NodeIo,"*** Password required! If you don't have a password please email\n%s for a password you wish to use.", Email);
     axio_printf(NodeIo,"\nPassword: ");
-    if (User.ul_type == AF_INET) {
+    if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
       axio_tn_will_echo(NodeIo);
       axio_eolmode(NodeIo, EOLMODE_BINARY);
     }
     axio_flush(NodeIo);
     p = axio_getline(NodeIo);
-    if (User.ul_type == AF_INET) {
+    if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
       axio_tn_wont_echo(NodeIo);
       axio_eolmode(NodeIo, EOLMODE_TEXT);
       /*			axio_puts("\n",NodeIo); */
@@ -295,7 +295,7 @@ int main(int argc, char *argv[])
   if (User.ul_type == AF_NETROM) {
     /*		axio_printf(NodeIo, "%s} Welcome.\n", NodeId);  */
   } else 
-    if (User.ul_type == AF_INET) {
+    if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
       if (check_perms(PERM_ANSI, 0L) != -1) { 
 	node_msg("\n\e[01;34m[\e[01;37m%s\e[01;34m]\e[0m\nWelcome %s to the %s packet shell.", VERSION, User.call, HostName);
       } else if (check_perms(PERM_ANSI, 0L) == -1) {
@@ -389,7 +389,7 @@ int main(int argc, char *argv[])
 	    node_msg("What?\007"); 
 	  } else if (User.ul_type == AF_ROSE) {
 	    axio_printf(NodeIo,"Que?\007");
-	  } else if (User.ul_type == AF_INET) {
+	  } else if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
 	    axio_printf(NodeIo, "Huh?\007");
 	  } else {
 	    axio_printf(NodeIo,"Eh?\007");
