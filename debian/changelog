@@ -1,8 +1,8 @@
-uronode (2.4-1+dfsg) UNRELEASED; urgency=medium
+uronode (2.5.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
 
- -- Dave Hibberd <d@vehibberd.com>  Sun, 22 Nov 2015 14:23:50 +0000
+ -- Dave Hibberd <d@vehibberd.com>  Fri, 1 Apr 2016 14:23:50 +0000
 
 uronode (2.3.1-3) unstable; urgency=medium
 
