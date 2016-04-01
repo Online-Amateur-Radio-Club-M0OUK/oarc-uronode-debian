@@ -104,6 +104,9 @@ static ax25io *connect_to(char **addr, int family, int escape, int compr)
     salen = strlen(addr[1]);
     if ((salen != 6) && (salen != 10))
       {
+	if (User.ul_type == AF_NETROM) {
+		axio_printf(NodeIo,"%s} ", NodeId);
+	}
 	axio_printf(NodeIo,"Invalid ROSE address");
 	if (User.ul_type == AF_NETROM) {
 	  node_msg("");
@@ -208,7 +211,7 @@ static ax25io *connect_to(char **addr, int family, int escape, int compr)
       if (User.ul_type == AF_NETROM) {
 	axio_printf(NodeIo,"%s} ", NodeId);
       }
-      axio_printf(NodeIo,"Invalid port");
+      axio_printf(NodeIo,"Invalid interface: %s", addr[0]);
       if (User.ul_type == AF_NETROM) {
       	node_msg("");
       }
@@ -316,11 +319,11 @@ static ax25io *connect_to(char **addr, int family, int escape, int compr)
 	if (User.ul_type == AF_NETROM) {
 	  axio_printf(NodeIo,"%s} ", NodeId);
 	}	 
-	axio_printf(NodeIo,"Permission denied");
+	axio_printf(NodeIo,"Permission denied.");
 	if (User.ul_type == AF_NETROM) {
 	  node_msg("");
 	}
-	node_log(LOGLVL_GW, "Permission denied: telnet %s", User.dl_name);
+	node_log(LOGLVL_GW, "Permission denied: telnet %s.", User.dl_name);
 	close(fd);
 	return NULL;
       }
@@ -334,7 +337,10 @@ static ax25io *connect_to(char **addr, int family, int escape, int compr)
 	  } */
     break;
   default:
-    axio_printf(NodeIo,"%s Unsupported address family", NodeId);
+    if (User.ul_type == AF_NETROM) {
+          axio_printf(NodeIo,"%s} ", NodeId);
+        }
+    axio_printf(NodeIo,"Unsupported protocol.");
     if (User.ul_type == AF_NETROM) {
       node_msg("");
     }
@@ -421,7 +427,7 @@ static ax25io *connect_to(char **addr, int family, int escape, int compr)
 	if (check_perms(PERM_ANSI, 0L) != -1) {
 	  axio_printf(NodeIo, "\e[05;31m");
 	}
-	axio_printf(NodeIo,"Aborted");
+	axio_printf(NodeIo,"Connection aborted.");
 	if (check_perms(PERM_ANSI, 0L) != -1) {
 	  axio_printf(NodeIo, "\e[0;m");
 	}
@@ -684,7 +690,7 @@ int do_connect(int argc, char **argv)
       if (User.ul_type == AF_NETROM) {
 	axio_printf(NodeIo,"%s} ", NodeId);
       }
-      axio_printf(NodeIo,"Remote not found, please retry your entry.");
+      axio_printf(NodeIo,"%s not found, please retry your entry.", argv[1]);
       family = AF_UNSPEC;
       //      free_flex_dst(flx);
       //      free_ax_routes(ax);
@@ -977,11 +983,12 @@ int do_ping(int argc, char **argv)
   }
   if (argc > 2) {
     len = atoi(argv[2]) + sizeof(struct icmphdr);
-    if (len > 256) {
+//    if (len > 256) {
+      if (len > 136) {
       if (User.ul_type == AF_NETROM) {
 	axio_printf(NodeIo,"%s} ", NodeId);
       }
-      axio_printf(NodeIo,"Maximum size is %d", 256 - sizeof(struct icmphdr));
+      axio_printf(NodeIo,"Maximum ping size is %d", 136 - sizeof(struct icmphdr));
       if (User.ul_type == AF_NETROM) {
 	node_msg("");
       }
@@ -1118,10 +1125,10 @@ int do_ping(int argc, char **argv)
 	}
 	if (User.ul_type == AF_INET) {
 	  if (check_perms(PERM_ANSI, 0L) != -1) {
-	    axio_printf(NodeIo, "\e[05;38m");
+	    axio_printf(NodeIo, "\e[05;31m");
 	  }
 	}
-	axio_printf(NodeIo,"Aborted");
+	axio_printf(NodeIo,"Ping aborted.");
 	if (User.ul_type == AF_INET) {
 	  if (check_perms(PERM_ANSI, 0L) != -1) {
 	    axio_printf(NodeIo, "\e[0;m");

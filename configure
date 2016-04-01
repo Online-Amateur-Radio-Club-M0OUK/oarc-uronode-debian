@@ -48,6 +48,25 @@ else
    echo "and rerun ./configure to continue."
    exit 1
 fi
+_sleep 1
+echo -n "you need make to make URONode: "
+MAKE=`which make`
+_sleep 2
+if [ -e "$MAKE" ]
+   then
+   echo -n "saw $MAKE... "
+   _sleep 1
+   echo "MAKE found! Congratulations!!"
+else
+   echo "make not found!"
+   echo " "
+   echo "You need this utility to make URONode."
+   echo "Please install make, and rerun this ./configure script."
+   echo "If you have a copy of make installed, please insure you have"
+   echo "it in your path and rerun ./configure to continue."
+   exit 1
+fi
+
 echo -n "Your machine architecture is: "
 _sleep 1
 ARCH=`uname -m`
@@ -290,6 +309,13 @@ echo ""
 		if [ -x ./axdigi ]; then
 			echo "SUCCESS!"
 		fi
+		 _sleep 1
+                echo -n "calibrate: "
+                _sleep 1
+                if [ -x ./calibrate ]; then
+                        echo "SUCCESS!"
+                fi
+
 		_sleep 1
 		echo -n "flexd:     "
 		_sleep 1

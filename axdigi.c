@@ -33,6 +33,8 @@
 /* below added by N1URO */
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <error.h>
 #include <signal.h>
 #include <linux/ax25.h>
 /* added by N1URO */
@@ -51,7 +53,7 @@ void get_interfaces(int skt);
 #define E_BIT 0x01	/* Address extension bit */
 #define REPEATED 0x80	/* Has-been-repeated bit */
 #define MAX_PORTS 16
-#define VERSION "0.2"
+#define VERSION "0.3"
 #define AXDIGI_PID_FILE  "/var/run/axdigi.pid"
 int port_count = 0;
 unsigned char portname[MAX_PORTS][20];
@@ -59,19 +61,23 @@ unsigned char portcall[MAX_PORTS][8];
 
 void(*sigterm_defhnd)(int);
 
-static void quit_handler(int sig)
+void quit_handler(int sig)
 {
+  unlink(AXDIGI_PID_FILE);
   signal(SIGTERM, SIG_IGN);
-
-  unlink(AXDIGI_PID_FILE);
-
-//  signal(SIGTERM, sigterm_defhnd);
-  signal(SIGTERM, quit_handler);
+  fprintf(stderr, "axDigi quitting.\n\r");
+  signal(SIGTERM, sigterm_defhnd);
   raise(SIGTERM);
-  unlink(AXDIGI_PID_FILE);
-  system("rm -f /var/run/axdigi.pid");
   return;
 }
+
+void hup_handler(int sig)
+{
+  signal(SIGHUP, SIG_IGN);
+  fprintf(stderr, "SIGHUP caught by axDigi.\n\r");
+  signal(SIGHUP, hup_handler); /* Restore hangup handler */
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -80,20 +86,9 @@ int main(int argc, char *argv[])
   unsigned char buf[4096];
   struct sockaddr sa;
   int asize;
-	
 
-  system("rm -f /var/run/axdigi.pid");
 
   FILE *pidfile;
-
-//  signal(SIGALRM, alarm_handler);
-//  signal(SIGTERM, term_handler);
-//  signal(SIGPIPE, quit_handler);
-//  signal(SIGQUIT, quit_handler);
-
-//  pidfile = fopen(AXDIGI_PID_FILE, "w");
-//  fprintf(pidfile, "%d\n", (int)getpid());
-//  fclose(pidfile);
 
   /* Check our huge range of flags */
   if (argc > 1)
@@ -101,7 +96,7 @@ int main(int argc, char *argv[])
       if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "-h") ==0)
 	{
 	  printf("axdigi version %s. Copyright (C) 1995 Craig Small VK2XLZ\n", VERSION);
-	  printf("modificatiions 2012-present by Brian N1URO\n\n");
+	  printf("modificatiions Copyright (C) 2012-present by Brian N1URO\n\n");
 	  printf("axdigi comes with ABSOLUTELY NO WARRANTY.\n");
 	  printf("This is free software, and you are welcome to redistribute it\n");
 	  printf("under the terms of GNU General Public Licence as published\n");
@@ -112,6 +107,7 @@ int main(int argc, char *argv[])
     }
 
 /* Routine to daemonize - added by N1URO */
+
 if (!daemon_start(TRUE)) {
    fprintf(stderr, "Sorry, axdigi cannot become a daemon\n");
    return 1;
@@ -126,7 +122,11 @@ if (!daemon_start(TRUE)) {
 
   pidfile = fopen(AXDIGI_PID_FILE, "w");
   fprintf(pidfile, "%d\n", (int)getpid());
+  fprintf(stderr, "axDigi started. \n\r");
   fclose(pidfile);
+
+  signal(SIGHUP, hup_handler);
+  sigterm_defhnd = signal(SIGTERM, quit_handler);
 
   get_interfaces(skt);
 	
@@ -154,7 +154,6 @@ if (!daemon_start(TRUE)) {
     } /* while(1) */
 
   close(skt);
-//  system("rm -f /var/run/axdigi.pid");
 }
 
 int recv_packet(unsigned char *buf, int size, unsigned char *port)
@@ -299,3 +298,5 @@ void get_interfaces(int skt)
 	}
     } /* for */
 }	
+
+void(*sigterm_defhnd)(int);

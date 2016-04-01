@@ -39,7 +39,7 @@ int do_mheard (int argc,char **argv) {
     if(ax25_config_get_dev(argv[1]) == NULL
        || (check_perms(PERM_HIDDEN, 0) == -1
 	   && is_hidden(argv[1]))) {
-      axio_printf(NodeIo,"Invalid port: %s",argv[1]);
+      axio_printf(NodeIo,"Invalid interface: %s", argv[1]);
 
       if(User.ul_type == AF_NETROM)
 	node_msg("");
