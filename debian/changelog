@@ -1,3 +1,16 @@
+uronode (2.5.1-2) unstable; urgency=medium
+
+  * debian/control
+    - Updated Standards Version to 3.9.7
+    - Changed VCS-* to secure URIs
+  * debian/patches/hardening
+    - patch renamed (previously called remove-cflags)
+    - patch adds CPPFlags and LDFlags to compiler instructions
+  * debian/rules
+    - Exporting hardening=+all to enable fPIE and bindnow
+
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 05 Apr 2016 00:48:49 +0100
+
 uronode (2.5.1-1) unstable; urgency=medium
 
   * New upstream release
