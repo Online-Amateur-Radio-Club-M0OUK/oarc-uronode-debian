@@ -1,4 +1,4 @@
-uronode (2.6-1) UNRELEASED; urgency=medium
+uronode (2.6-1) unstable; urgency=medium
 
   * New Upstream import
     - Patches refreshed
@@ -7,7 +7,7 @@ uronode (2.6-1) UNRELEASED; urgency=medium
   * debian/patches/hardening
     - Added options for CXXFLAGS and CPPFLAGS
 
- -- Dave Hibberd <d@vehibberd.com>  Sat, 21 Jan 2017 14:34:19 +0000
+ -- Dave Hibberd <d@vehibberd.com>  Sat, 21 Jan 2017 15:41:58 +0000
 
 uronode (2.5.1-2) unstable; urgency=medium
 
