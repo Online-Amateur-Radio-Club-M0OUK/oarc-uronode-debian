@@ -23,6 +23,7 @@
 #include <netax25/daemon.h>
 
 #include "config.h"
+#include "node.h"
 #include "procinfo.h"
 
 #define DEFAULT_POLL_TIME 600
@@ -111,7 +112,7 @@ void read_conf(void)
       }
     }
   }	 
-  fprintf(stderr,"FlexD started.\n\r");
+  fprintf(stderr,"FlexD started.\n");
   fclose(fgt);
   fclose(fp);
 }
@@ -141,7 +142,7 @@ int download_dest(char *gateway, char *fname)
   }
 
   if ((addr = ax25_config_get_addr(port)) == NULL) {
-    sprintf(buffer, "flexd connect: invalid AX.25 port name - %s\r\n", port);
+    sprintf(buffer, "flexd connect: invalid AX.25 port name - %s\n", port);
     write(STDOUT_FILENO, buffer, strlen(buffer));
     return 1;
   }
@@ -150,7 +151,7 @@ int download_dest(char *gateway, char *fname)
    * Open the socket into the kernel.
    */
   if ((s = socket(AF_AX25, SOCK_SEQPACKET, 0)) < 0) {
-    sprintf(buffer, "flexd connect: cannot open AX.25 socket, %s\r\n", strerror(errno));
+    sprintf(buffer, "flexd connect: cannot open AX.25 socket, %s\n", strerror(errno));
     write(STDOUT_FILENO, buffer, strlen(buffer));
     return 1;
   }
@@ -165,7 +166,7 @@ int download_dest(char *gateway, char *fname)
   addrlen=sizeof(struct full_sockaddr_ax25);
   
   if (bind(s, (struct sockaddr *)&axbind, addrlen) != 0) {
-    sprintf(buffer, "flexd connect: cannot bind AX.25 socket, %s\r\n", strerror(errno));
+    sprintf(buffer, "flexd connect: cannot bind AX.25 socket, %s\n", strerror(errno));
     write(STDOUT_FILENO, buffer, strlen(buffer));
     close(s);
     return 1;
@@ -178,14 +179,14 @@ int download_dest(char *gateway, char *fname)
   axconnect.fsa_ax25.sax25_family = AF_AX25;
   
   if (fcntl(s, F_SETFL, O_NONBLOCK) == -1) {
-    sprintf(buffer, "flexd connect: fcntl on socket: %s\r\n", strerror(errno));
+    sprintf(buffer, "flexd connect: fcntl on socket: %s\n", strerror(errno));
     write(STDOUT_FILENO, buffer, strlen(buffer));
     close(s);
     return 1;
   }
 
   if (ax25_aton_arglist((const char **)dlist, &axconnect) == -1) {
-    sprintf(buffer, "flexd connect: invalid destination callsign or digipeater\r\n");
+    sprintf(buffer, "flexd connect: invalid destination callsign or digipeater\n");
     write(STDOUT_FILENO, buffer, strlen(buffer));
     close(s);
     return 1;
@@ -194,16 +195,16 @@ int download_dest(char *gateway, char *fname)
   if (connect(s, (struct sockaddr *)&axconnect, addrlen) == -1 && errno != EINPROGRESS) {
     switch (errno) {
     case ECONNREFUSED:
-      strcpy(buffer, "*** Connection refused - aborting\r\n");
+      strcpy(buffer, "*** Connection refused - aborting\n");
       break;
     case ENETUNREACH:
-      strcpy(buffer, "*** No known route - aborting\r\n");
+      strcpy(buffer, "*** No known route - aborting\n");
       break;
     case EINTR:
-      strcpy(buffer, "*** Connection timed out - aborting\r\n");
+      strcpy(buffer, "*** Connection timed out - aborting\n");
       break;
     default:
-      sprintf(buffer, "*** Cannot connect, %s\r\n", strerror(errno));
+      sprintf(buffer, "*** Cannot connect, %s\n", strerror(errno));
       break;
     }
     
@@ -235,7 +236,7 @@ int download_dest(char *gateway, char *fname)
       if (ret != 0) {
 	cp = strdup(strerror(ret));
 	strlwr(cp);
-	sprintf(buffer, "flexd connect: Failure with %s\r\nError: %s\r\n", gateway, cp);
+	sprintf(buffer, "flexd connect: Failure with %s\nError: %s\n", gateway, cp);
 	write(STDOUT_FILENO, buffer, strlen(buffer));
 	free(cp);
 	close(s);
@@ -373,7 +374,7 @@ void hup_handler(int sig)
 {
   signal(SIGHUP, SIG_IGN);
   
-  fprintf(stderr, "SIGHUP caught by FlexD, restarting... \n\r");
+  fprintf(stderr, "SIGHUP caught by FlexD, restarting... \n");
   read_conf();
   update_flex();
   
@@ -404,6 +405,24 @@ void quit_handler(int sig)
 int main(int argc, char *argv[])
 {       
   FILE *pidfile; 
+
+  if (argc > 1)
+    {
+        if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "-h") ==0)
+          {
+           printf("FlexD version %s.\n\r", VERSION);
+	   printf("Copywrite (c) 2000-2003 by Roy PE1RJA and Stefano IZ5AWZ\n\r");
+           printf("Copywrite (c) 2003 - present by Brian Rogers - N1URO.\n\r");
+           printf("FlexD is free sofware and you are welcome to redistribute it\n\r");
+           printf("under the terms of GNU General Public Licence as published\n\r");
+           printf("by Free Software Foundation; either version 2 of the License, or\n\r");
+           printf("(at your option) any later version.\n\r");
+           printf("\n\r");
+           printf("FlexD comes with NO WARRANTY. Use at your own risk.\n\r");
+           return 0;
+        }
+   }
+
 
  signal(SIGPIPE, SIG_IGN);
 

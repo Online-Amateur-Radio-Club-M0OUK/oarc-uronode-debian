@@ -2,15 +2,15 @@ all: nodeusers uronode axdigi calibrate @FLEXNET@
 
 CC = gcc
 LD = gcc
-# CFLAGS = -O2 -g -s -Wstrict-prototypes
-CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
+# CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
+CFLAGS = -DUNIX -g3 -DDEBUG
 LDFLAGS =
 LIBS = -lax25 -lax25io
 
 include Makefile.include
 
 COMMON_SRC =		user.c util.c
-NODE_SRC =		node.c cmdparse.c config.c command.c mheard.c axcalluser.c \
+NODE_SRC =		node.c cmdparse.c config.c command.c jheard.c axcalluser.c \
 			gateway.c extcmd.c procinfo.c router.c system.c sysinfo.c ipc.c
 NODEUSERS_SRC =		nodeusers.c
 FLEXD_SRC = 		flexd.c procinfo.c

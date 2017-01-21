@@ -53,8 +53,9 @@ void init_nodecmds(void)
 #ifdef HAVE_FLEX
   add_internal_cmd(&Nodecmds, "Desti",    1, do_dest);
 #endif
-#ifdef HAVE_MHEARD
-  add_internal_cmd(&Nodecmds, "MHeard",   2, do_mheard);
+#ifdef HAVE_JHEARD
+  add_internal_cmd(&Nodecmds, "Jheard",   1, do_jheard);
+  add_internal_cmd(&Nodecmds, "JLong",    2, do_jlong);
 #endif
 #ifdef HAVE_NETROM
   add_internal_cmd(&Nodecmds, "Nodes",    1, do_nodes);
