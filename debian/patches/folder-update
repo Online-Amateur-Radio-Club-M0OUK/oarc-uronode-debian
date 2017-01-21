@@ -1,17 +1,10 @@
 Description: Update the folders in which Uronode is installed
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2015-10-16
+Last-Update: 2017-01-21
 
 --- a/configure
 +++ b/configure
-@@ -1,5 +1,5 @@
- #!/bin/sh
--
-+NON_INTERACTIVE="1"
- _sleep()
- {
-   [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
-@@ -14,13 +14,13 @@
+@@ -20,13 +20,13 @@
  _sleep 2
  make distclean > make.debug
  

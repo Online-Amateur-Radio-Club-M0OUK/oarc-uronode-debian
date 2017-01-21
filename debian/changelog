@@ -1,3 +1,14 @@
+uronode (2.6-1) UNRELEASED; urgency=medium
+
+  * New Upstream import
+    - Patches refreshed
+  * debian/control
+    - Updated Standards version to 3.9.8
+  * debian/patches/hardening
+    - Added options for CXXFLAGS and CPPFLAGS
+
+ -- Dave Hibberd <d@vehibberd.com>  Sat, 21 Jan 2017 14:34:19 +0000
+
 uronode (2.5.1-2) unstable; urgency=medium
 
   * debian/control

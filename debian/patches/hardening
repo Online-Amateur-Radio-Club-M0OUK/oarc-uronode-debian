@@ -1,27 +1,27 @@
 Description: Fix Lintian hardening errors caused by flags not being passed to compiler,
 use debhelper compiler flags
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2016-04-05
+Last-Update: 2017-01-21
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -3,8 +3,8 @@
+@@ -3,7 +3,9 @@
  CC = gcc
  LD = gcc
- # CFLAGS = -O2 -g -s -Wstrict-prototypes
--CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
--LDFLAGS =
-+#CFLAGS = -O2 -g -Wno-unused-result -Wstrict-prototypes
-+#LDFLAGS =
+ # CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
+-CFLAGS = -DUNIX -g3 -DDEBUG
++# CFLAGS = -DUNIX -g3 -DDEBUG
++CXXFLAGS =
++CPPFLAGS =
+ LDFLAGS =
  LIBS = -lax25 -lax25io
  
- include Makefile.include
-@@ -24,7 +24,7 @@
+@@ -24,7 +26,7 @@
  DIGI_OBJS =		$(DIGI_SRC:.c=.o)
  CALIBRATE_OBJS =	$(CALIBRATE_SRC:.c=.o)
  .c.o:
 -	$(CC) $(CFLAGS) -c $<
-+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -c $<
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(CXXFLAGS) -c $<
  
  install: installbin installman installhelp installconf
  	install -b -m 755    -D -d	$(VAR_DIR)
