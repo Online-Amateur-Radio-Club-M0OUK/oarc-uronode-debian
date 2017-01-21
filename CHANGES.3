@@ -174,6 +174,89 @@ While at it Bob increased the buffer for the reader within FlexD. Seems
 Xnet may require a larger buffer than FlexNet for some reason? Bob also
 checked that in. Thanks Bob.
 
+18/04/2016 - v2.6
+Removed stale and unused axdigi.conf file. Thanks to David KI6ZHD for
+pointing this out that I had a stale file in the archive. This file
+belonged to another digi daemon I was going to revive instead of Craig
+Small's multi-interface crossport digi daemon. I find that especially
+with FlexNet, a multi-interface crossport digipeat system not only is
+unique to the native linux kernel BUT is also very efficient. If you
+have a stale copy of axdigi.conf floating around, please delete this.
+
+Added a question to engage or disengage interactive configure/make mode.
+This idea came to me from a query I received by KI6ZHD. If you choose NOT
+to use interactive mode, than you must run make/make upgrade/make install
+manually. Note: ALL options including rose and flexnet WILL BE COMPILED IN.
+
+Tomasz SP2L was seeing carriage returns when administering his server
+remotely and sending SIGHUP to flexd in the terminal messages confirming
+the -HUP. Removed.
+
+Added a version output for FlexD and tweeked the one for axdigi. Now both
+helper daemons will display its versions based on URONode's version and
+some very brief information about themselves. flexd -v or flexd -h
+along with axdigi -v or axdigi -h will bring up this information.
+
+Decided that since there's so many commands beginning with M I would move
+the MHeard command to a Jheard command. This keeps the commandset more in
+line with other systems except for TheNet and X1J-4, and separates that one
+command away from the volume of M's. While at it I also made a JL for
+Just heard Long. If you specify an interface, Jheard/JLong engages only for 
+that interface. Note - JLong will say: it may time out HFers. I also had to 
+modify Makefile and rework the help files to match. While at it I needed to
+modify the uronode.8 MAN page.
+
+Gave Makefile a more modernized compile line option. I'm hoping this will
+keep URONode one of packet's better robust nodes.
+
+I noticed some sites were violating Software2000's NetRom specifications
+by defaulting reconnect on still in their uronode.conf files. I had thought
+that I fixed this in an earlier release. Perhaps I did and then migrated
+an old .c file back into the mix? (wouldn't be the first time I've done
+that by mistake!) Anyway... three key things Software2000 was insistant upon
+were NO CTEXT, NO RECONNECT, NO GOODBYE MESSAGES. If you've noticed, I've
+taken ALL that out of URONode. These things were done as to not confuse
+robot scripts such as PBBS mail forwarding sessions. While other systems
+may wish to continue to violate the NetRom protocol (and others) I will
+do everything in my power NOT to.
+
+An anonymous user from sourceforge had a compiler warning on the
+do_prompt cycle in config.c and provided a fix for it. I don't know if
+the user is even a ham but their alias is dcb314, and we thank them. Their
+report and fix which is included:
+config.c:407:35: warning: logical 'or' of collectively exhaustive tests is always true [-Wlogical-op]
+Source code is
+if ((User.ul_type != AF_NETROM) || (User.ul_type != AF_INET) || 
+(User.ul_type != AF_INET6)) {
+Maybe better code
+if ((User.ul_type != AF_NETROM) && (User.ul_type != AF_INET) && 
+(User.ul_type != AF_INET6)) {
+While I don't get the warning he had, the logistics seem to be fine. Thanks
+again to dcb314 at sourceforge for their report.
+
+I have made a diff file for JNOS2.0K that makes it a bit more user 
+compatible with URONode, and other linux-based nodes. For almost 30 years
+TCP port 3694 has been used for inbound telnet for linux-based nodes, and
+URONode is no exception... just as IP protocol 93 is for axip and UDP
+port 93 is for axudp (again other systems love to violate protocols, we
+try not to). Besides my little isms that I like in xNOS which I often
+contributed to K2MF for MFNOS, I've began to do similar for JNOS. I'm adding
+the .diff file in the main code distribution so if you do run JNOS 2.0K as
+your PBBS TCP port 3694 is now recognized in JNOS with my patch. I have
+as of this writing submitted it to Maiko for considerations, I don't know
+if he's going to use it or not. If you do want to patch your JNOS 2.0K
+copy it into your jnos source directory and run: patch -p1 -i jnos20k.diff
+and you should see about a half dozen files updated. If Maiko doesn't wish
+to include this and you want me to keep up to date with it, let me know.
+
+With the recent CVE study on Winlink2000 and plain text passwords exposed, I
+went through URONode to insure it wasn't posessing the same issue. By
+default URONode doesn't ask for ANY passwords however it's highly suggested
+that the sysop require passwords on any internet or amprnet interface. Before
+yes, a sysop could require a password on an ax25/NetRom/Rose interface which
+would be exposed. Now, if a sysop mistakenly tries to force a password
+on RF, it will be ignored by the node so it's not exposed.
+
 ----------- Note on SystemD --------
 In uronode.socket, you'll notice the line:
 ListenStream=0.0.0.0:3694
@@ -221,4 +304,3 @@ Join our support mail list graciously donated by TAPR!
 http://www.tapr.org/mailman/listinfo/uronode
 
 73 de Brian N1URO
-

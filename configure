@@ -1,5 +1,11 @@
 #!/bin/sh
 
+echo -n "Use interactive mode? [Y/n]: "; read answer
+if [ "$answer" = "Y" -o "$answer" = "y" -o "$answer" = "" ]
+   then NON_INTERACTIVE=0;
+       else NON_INTERACTIVE=1;
+fi
+
 _sleep()
 {
   [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
@@ -100,7 +106,7 @@ fi
 	IN="#"
 	HAVENETROM="#undef HAVE_NETROM"
 	HAVEROSE="#undef HAVE_ROSE"
-	HAVEMHEARD="#undef HAVE_MHEARD"
+	HAVEMHEARD="#undef HAVE_JHEARD"
 	HAVEAUTOROUTE="#undef HAVE_AUTOROUTE"
 	HAVETCPIP="#undef HAVE_TCPIP"
 	HAVEMOTD="#undef HAVE_MOTD"
@@ -174,7 +180,7 @@ fi
 	if [ $? -ne 1 ]
 	then
 		HAVEAX25="#define HAVE_AX25	1"
-		HAVEMHEARD="#define HAVE_MHEARD	1"
+		HAVEMHEARD="#define HAVE_JHEARD	1"
 	fi
 	#
 #       echo -n "Include support for ax25 AutoRouter ? [Y/n]: "; read answer
@@ -270,7 +276,8 @@ echo ""
 _sleep 1
 echo "Special thanks to: Morgan, sm6tky for his security report"
 echo "and Barry K2MF for his input on some of my routines and supplying"
-echo "some source code."
+echo "some source code. If you did not use interactive mode, you must"
+echo "run make manually."
 _sleep 1
 echo ""
 #echo -n "Shall I run the make command for you ? [Y/n]: "

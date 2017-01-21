@@ -429,7 +429,7 @@ int examine_user(void)
   do {
     if (strcmp(cp, "shell")==0) {
       shell=1;
-      add_internal_cmd(&Nodecmds, "SYSop",	1, do_system);
+//      add_internal_cmd(&Nodecmds, "SYSop",	1, do_system);
     }
     cp=strtok(NULL, " ,;-/\t\n\r");
   } while(cp!=NULL);

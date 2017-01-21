@@ -39,7 +39,7 @@
 #include <linux/ax25.h>
 /* added by N1URO */
 #include <netax25/daemon.h>
-
+#include "node.h"
 int recv_packet(unsigned char *buf, int size, unsigned char *port);
 void print_call(unsigned char *buf);
 unsigned char *find_call(char *port);
@@ -53,7 +53,7 @@ void get_interfaces(int skt);
 #define E_BIT 0x01	/* Address extension bit */
 #define REPEATED 0x80	/* Has-been-repeated bit */
 #define MAX_PORTS 16
-#define VERSION "0.3"
+// #define VERSION "0.3"
 #define AXDIGI_PID_FILE  "/var/run/axdigi.pid"
 int port_count = 0;
 unsigned char portname[MAX_PORTS][20];
@@ -95,13 +95,14 @@ int main(int argc, char *argv[])
     {
       if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "-h") ==0)
 	{
-	  printf("axdigi version %s. Copyright (C) 1995 Craig Small VK2XLZ\n", VERSION);
+	  printf("axdigi: version %s.\n\r", VERSION);
+	  printf("Copywrite (c) 1995 Craig Small - VK2XLZ\n\r");
 	  printf("modificatiions Copyright (C) 2012-present by Brian N1URO\n\n");
-	  printf("axdigi comes with ABSOLUTELY NO WARRANTY.\n");
-	  printf("This is free software, and you are welcome to redistribute it\n");
-	  printf("under the terms of GNU General Public Licence as published\n");
-	  printf("by Free Software Foundation; either version 2 of the License, or\n");
-	  printf("(at your option) any later version.\n");
+	  printf("axdigi comes with ABSOLUTELY NO WARRANTY.\n\r");
+	  printf("This is free software, and you are welcome to redistribute it\n\r");
+	  printf("under the terms of GNU General Public Licence as published\n\r");
+	  printf("by Free Software Foundation; either version 2 of the License, or\n\r");
+	  printf("(at your option) any later version.\n\r");
 	  return 0;
 	}
     }
@@ -122,7 +123,7 @@ if (!daemon_start(TRUE)) {
 
   pidfile = fopen(AXDIGI_PID_FILE, "w");
   fprintf(pidfile, "%d\n", (int)getpid());
-  fprintf(stderr, "axDigi started. \n\r");
+  fprintf(stderr, "axDigi started. \n");
   fclose(pidfile);
 
   signal(SIGHUP, hup_handler);

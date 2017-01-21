@@ -258,7 +258,11 @@ int main(int argc, char *argv[])
     node_msg("Sorry, I'm not allowed to talk to you.");
     node_log(LOGLVL_LOGIN, "Login denied for %s @ %s", User.call, User.ul_name);
     node_logout("Login denied");
-  } else if (strcmp(pw, "*") != 0) {
+  } 
+    else if  (User.ul_type == AF_AX25 || User.ul_type == AF_NETROM || User.ul_type == AF_ROSE) {
+	(strcmp(pw, "*") == 0);
+    }
+    else if (strcmp(pw, "*") != 0) {
     axio_printf(NodeIo,"*** Password required! If you don't have a password please email\n%s for a password you wish to use.", Email);
     axio_printf(NodeIo,"\nPassword: ");
     if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {

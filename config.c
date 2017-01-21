@@ -404,7 +404,7 @@ static int do_roseid(int argc, char **argv)
 
 static int do_prompt(int argc, char **argv)
 {
-  if ((User.ul_type != AF_NETROM) || (User.ul_type != AF_INET) || (User.ul_type != AF_INET6)) {
+  if ((User.ul_type != AF_NETROM) && (User.ul_type != AF_INET) && (User.ul_type != AF_INET6)) {
     if (argc < 2) {
       return -1;
       Prompt = strdup(argv[1]);

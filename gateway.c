@@ -549,7 +549,7 @@ int do_connect(int argc, char **argv)
   char *connstr = NULL;
   axio_puts("",NodeIo);
  
-  stay = ReConnectTo;
+  stay = 0;
   if (!strcasecmp(argv[argc - 1], "s")) {
     stay = 1;
     argv[--argc] = NULL;
