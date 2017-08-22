@@ -1,10 +1,10 @@
 Description: Create proper SBIN_DIR directory at install time
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2015-09-07
+Last-Update: 2017-08-22
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -35,6 +35,7 @@
+@@ -37,6 +37,7 @@
  	install -b -m 644    -p etc/gateways	 $(VAR_DIR)/flex
  	
  installbin: all

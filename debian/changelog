@@ -1,3 +1,19 @@
+uronode (2.7-1) UNRELEASED; urgency=medium
+
+  * New Upstream import
+    - Patches refreshed
+  * debian/patches/hardening
+    - Updated flags to be included
+  * debian/patches/install-dir-creation  
+    - Refreshed to accommodate new lines
+  * debian/patches/flexd-spelling
+    - Added to fix binary spelling error
+  * debian/control
+    - Updated Standards Version to 4.1.1
+    - Removed zlib1g-dev dependency
+
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 22 Aug 2017 14:01:16 +0100
+
 uronode (2.6-1) unstable; urgency=medium
 
   * New Upstream import
