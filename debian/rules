@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+export NON_INTERACTIVE=1
 
 %:
 	dh $@

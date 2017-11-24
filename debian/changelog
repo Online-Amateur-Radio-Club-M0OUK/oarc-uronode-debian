@@ -1,3 +1,10 @@
+uronode (2.8-1) UNRELEASED; urgency=medium
+
+  * New Upstream import
+    - patches refreshed
+
+ -- Dave Hibberd <d@vehibberd.com>  Fri, 24 Nov 2017 18:07:19 +0000
+
 uronode (2.7-1) unstable; urgency=medium
 
   * New Upstream import
