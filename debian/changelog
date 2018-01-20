@@ -1,9 +1,11 @@
-uronode (2.8-1) UNRELEASED; urgency=medium
+uronode (2.8.1-1) UNRELEASED; urgency=medium
 
   * New Upstream import
     - patches refreshed
+  * debian/control
+    - Updated to Standards Version 4.1.3
 
- -- Dave Hibberd <d@vehibberd.com>  Fri, 24 Nov 2017 18:07:19 +0000
+ -- Dave Hibberd <d@vehibberd.com>  Sat, 20 Jan 2018 12:07:19 +0000
 
 uronode (2.7-1) unstable; urgency=medium
 
@@ -11,7 +13,7 @@ uronode (2.7-1) unstable; urgency=medium
     - Patches refreshed
   * debian/patches/hardening
     - Updated flags to be included
-  * debian/patches/install-dir-creation  
+  * debian/patches/install-dir-creation
     - Refreshed to accommodate new lines
   * debian/patches/flexd-spelling
     - Added to fix binary spelling error
@@ -53,7 +55,7 @@ uronode (2.5.1-1) unstable; urgency=medium
 
 uronode (2.3.1-3) unstable; urgency=medium
 
-  * Fix hardcoding temporary install directories into program binaries 
+  * Fix hardcoding temporary install directories into program binaries
 
  -- Dave Hibberd <d@vehibberd.com>  Fri, 16 Oct 2015 20:02:02 +0100
 

@@ -3,8 +3,8 @@ Section: hamradio
 Priority: optional
 Maintainer: Debian Hamradio Maintainers <debian-hams@lists.debian.org>
 Uploaders: Dave Hibberd <d@vehibberd.com>
-Build-Depends: debhelper (>= 10), libax25-dev
-Standards-Version: 4.1.1
+Build-Depends: debhelper (>= 11), libax25-dev
+Standards-Version: 4.1.3
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-hamradio/uronode.git
 Vcs-Git: https://anonscm.debian.org/git/pkg-hamradio/uronode.git
 Homepage: http://uronode.sourceforge.net/
