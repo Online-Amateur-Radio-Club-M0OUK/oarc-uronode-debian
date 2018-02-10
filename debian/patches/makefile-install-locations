@@ -25,3 +25,14 @@ Last-Update: 2015-10-16
 -ZLIB		= @ZLIB@
 \ No newline at end of file
 +ZLIB		= @ZLIB@
+--- a/configure
++++ b/configure
+@@ -26,7 +26,7 @@
+ [ "$LIB_DIR" ] || LIB_DIR=/usr/lib
+ [ "$DATA_DIR" ] || DATA_DIR=/usr/share
+ [ "$MAN_DIR" ] || MAN_DIR=/usr/share/man
+-[ "$VAR_DIR" ] || VAR_DIR=/var/lib/ax25
++[ "$VAR_DIR" ] || VAR_DIR=/var/ax25
+ 
+ echo "Welcome to the configuration utility for URONode. This configure script"
+ echo "will very simply and easily guide you into installling URONode with as"

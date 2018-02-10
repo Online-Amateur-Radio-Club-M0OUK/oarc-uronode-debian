@@ -4,7 +4,16 @@ Last-Update: 2017-08-22
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -38,6 +38,7 @@
+@@ -2,8 +2,6 @@
+ 
+ CC = gcc
+ LD = gcc
+-# CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
+-# CFLAGS = -DUNIX -g3 -DDEBUG
+ CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+ CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+ CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+@@ -38,6 +36,7 @@
  	install -b -m 644    -p etc/gateways	 $(VAR_DIR)/flex
  	
  installbin: all
