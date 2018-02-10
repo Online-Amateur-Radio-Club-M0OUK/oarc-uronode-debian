@@ -1,6 +1,6 @@
 Description: Create proper SBIN_DIR directory at install time
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2017-08-22
+Last-Update: 2018-02-10
 
 --- a/Makefile.in
 +++ b/Makefile.in

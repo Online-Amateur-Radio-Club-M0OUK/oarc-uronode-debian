@@ -1,0 +1,18 @@
+Description: Remove interactive mode from configure, speed up build
+Author: Dave Hibberd <d@vehibberd.com>
+Last-Update: 2018-02-10
+
+--- a/configure
++++ b/configure
+@@ -1,11 +1,5 @@
+ #!/bin/sh
+ 
+-echo -n "Use interactive mode? [Y/n]: "; read answer
+-if [ "$answer" = "Y" -o "$answer" = "y" -o "$answer" = "" ]
+-   then NON_INTERACTIVE=0;
+-       else NON_INTERACTIVE=1;
+-fi
+-
+ _sleep()
+ {
+   [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
