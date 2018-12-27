@@ -1,0 +1,15 @@
+Description: Stop Uronode hard-coding location of net/if.h
+Author: Helmut Grohne <helmut@subdivi.de>
+Last-Update: 2018-12-27
+
+--- a/axdigi.c
++++ b/axdigi.c
+@@ -21,7 +21,7 @@
+  *        12th June 1997.
+  */
+ 
+-#include </usr/include/net/if.h>
++#include <net/if.h>
+ #include <linux/if_ether.h>
+ #include <netinet/in.h>
+ #include <sys/ioctl.h>

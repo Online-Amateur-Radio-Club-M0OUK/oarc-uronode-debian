@@ -1,3 +1,4 @@
+multiarch-libc.patch
 non-interactive-install.patch
 hardening
 folder-update

@@ -1,11 +1,21 @@
-uronode (2.8.1-2) UNRELEASED; urgency=medium
+uronode (2.9-1) unstable; urgency=medium
 
   * Salsa vcs added
   * Architecture changed to linux-any
   * Non-Interactive configure patched in
+  * Upstream bump to 2.9
+    - Patches Refreshed
+  * New patch added (Closes: #911491)
+    - Allow the compiler to choose net/if.h
+  * Two old patches Removed
+    - flexd-spelling
+    - no-install-gz-manpages
+  * debian/control
+    - Updated to Standards Version 4.3.0.1
+  * debian/copyright
+    - Secure Copyright url added
 
-
- -- Dave Hibberd <d@vehibberd.com>  Sat, 10 Feb 2018 19:41:57 +0000
+ -- Dave Hibberd <d@vehibberd.com>  Thu, 27 Dec 2018 16:19:08 +0000
 
 uronode (2.8.1-1) unstable; urgency=medium
 

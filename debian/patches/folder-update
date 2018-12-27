@@ -1,10 +1,10 @@
 Description: Update the folders in which Uronode is installed
 Author: Dave Hibberd <d@vehibberd.com>
-Last-Update: 2017-01-21
+Last-Update: 2018-12-27
 
 --- a/configure
 +++ b/configure
-@@ -20,13 +20,13 @@
+@@ -14,13 +14,13 @@
  _sleep 2
  make distclean > make.debug
  
