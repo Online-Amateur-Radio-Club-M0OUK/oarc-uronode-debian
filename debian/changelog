@@ -1,10 +1,10 @@
-uronode (2.10-1) unstable; urgency=medium
+uronode (2.11-1) unstable; urgency=medium
 
   * New upstream update
     - Patches Refreshed
   * Removed multiarch-libc patch, included upstream
 
- -- Dave Hibberd <d@vehibberd.com>  Sat, 17 Aug 2019 23:15:37 +0100
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 24 Mar 2020 20:55:58 +0000
 
 uronode (2.9-1) unstable; urgency=medium
 

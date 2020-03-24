@@ -4,20 +4,26 @@ Last-Update: 2018-02-10
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -2,8 +2,6 @@
- 
+@@ -3,11 +3,8 @@
  CC = gcc
  LD = gcc
--# CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
+ # CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
 -# CFLAGS = -DUNIX -g3 -DDEBUG
- CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
- CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
- CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
-@@ -38,6 +36,7 @@
- 	install -b -m 644    -p etc/gateways	 $(VAR_DIR)/flex
- 	
- installbin: all
-+	install -m 755	  -D -d $(SBIN_DIR)
- 	install -m 755 	-s -p	uronode		$(SBIN_DIR)
- 	install -m 755  -s -p	nodeusers	$(SBIN_DIR)
- 	install -m 755  -s -p	axdigi		$(SBIN_DIR)
+-CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+-CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+-CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+-LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
++CFLAGS = -DUNIX -g3 -DDEBUG
++LDFLAGS =
+ LIBS = -lax25 -lax25io
+ 
+ include Makefile.include
+@@ -27,7 +24,7 @@
+ DIGI_OBJS =		$(DIGI_SRC:.c=.o)
+ CALIBRATE_OBJS =	$(CALIBRATE_SRC:.c=.o)
+ .c.o:
+-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(CXXFLAGS) -c $<
++	$(CC) $(CFLAGS) -c $<
+ 
+ install: installbin installman installhelp installconf
+ 	install -b -m 755    -D -d	$(VAR_DIR)
