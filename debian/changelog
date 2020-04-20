@@ -3,6 +3,7 @@ uronode (2.11-1) UNRELEASED; urgency=medium
   * New upstream update
     - Patches Refreshed
   * Removed makefile-install-locations patch
+  * Added gitlab CI
 
  -- Dave Hibberd <d@vehibberd.com>  Mon, 20 Apr 2020 03:25:08 +0100
 
