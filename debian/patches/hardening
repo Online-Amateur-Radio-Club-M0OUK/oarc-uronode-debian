@@ -24,7 +24,7 @@ Last-Update: 2017-08-22
  CALIBRATE_OBJS =	$(CALIBRATE_SRC:.c=.o)
  .c.o:
 -	$(CC) $(CFLAGS) -c $<
-+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(CXXFLAGS) -c $<
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(CXXFLAGS) $(LDFLAGS)  -c $<
  
  install: installbin installman installhelp installconf
  	install -b -m 755    -D -d	$(VAR_DIR)

@@ -2,5 +2,4 @@ non-interactive-install.patch
 hardening
 folder-update
 install-dir-creation
-makefile-install-locations
 

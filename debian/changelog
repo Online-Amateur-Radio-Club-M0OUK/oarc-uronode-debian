@@ -1,10 +1,17 @@
-uronode (2.11-1) unstable; urgency=medium
+uronode (2.11-1) UNRELEASED; urgency=medium
 
+  * New upstream update
+    - Patches Refreshed
+  * Removed makefile-install-locations patch
+
+ -- Dave Hibberd <d@vehibberd.com>  Mon, 20 Apr 2020 03:25:08 +0100
+
+uronode (2.10-1) unstable; urgency=medium
   * New upstream update
     - Patches Refreshed
   * Removed multiarch-libc patch, included upstream
 
- -- Dave Hibberd <d@vehibberd.com>  Tue, 24 Mar 2020 20:55:58 +0000
+ -- Dave Hibberd <d@vehibberd.com>  Sat, 17 Aug 2019 23:15:37 +0100
 
 uronode (2.9-1) unstable; urgency=medium
 

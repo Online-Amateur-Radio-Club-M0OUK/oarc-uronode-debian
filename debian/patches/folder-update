@@ -15,13 +15,13 @@ Last-Update: 2018-12-27
 -[ "$DATA_DIR" ] || DATA_DIR=/usr/local/share
 -[ "$MAN_DIR" ] || MAN_DIR=/usr/local/share/man
 -[ "$VAR_DIR" ] || VAR_DIR=/usr/local/var/ax25
-+[ "$ETC_DIR" ] || ETC_DIR=/etc/ax25
-+[ "$SBIN_DIR" ] || SBIN_DIR=/usr/sbin
-+[ "$BIN_DIR" ] || BIN_DIR=/usr/bin
-+[ "$LIB_DIR" ] || LIB_DIR=/usr/lib
-+[ "$DATA_DIR" ] || DATA_DIR=/usr/share
-+[ "$MAN_DIR" ] || MAN_DIR=/usr/share/man
-+[ "$VAR_DIR" ] || VAR_DIR=/var/lib/ax25
++[ "$ETC_DIR" ] || ETC_DIR=debian/uronode/etc/ax25
++[ "$SBIN_DIR" ] || SBIN_DIR=debian/uronode/usr/sbin
++[ "$BIN_DIR" ] || BIN_DIR=debian/uronode/usr/bin
++[ "$LIB_DIR" ] || LIB_DIR=debian/uronode/usr/lib
++[ "$DATA_DIR" ] || DATA_DIR=debian/uronode/usr/share
++[ "$MAN_DIR" ] || MAN_DIR=debian/uronode/usr/share/man
++[ "$VAR_DIR" ] || VAR_DIR=debian/uronode/var/ax25
  
  echo "Welcome to the configuration utility for URONode. This configure script"
  echo "will very simply and easily guide you into installling URONode with as"
