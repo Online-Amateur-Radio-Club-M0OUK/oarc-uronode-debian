@@ -1,3 +1,4 @@
+uronode: non-standard-dir-in-var var/ax25/
 uronode: file-in-unusual-dir var/ax25/flex/gateways
 uronode: file-in-unusual-dir var/ax25/node/help/bye.hlp                                                            
 uronode: file-in-unusual-dir var/ax25/node/help/color.hlp
