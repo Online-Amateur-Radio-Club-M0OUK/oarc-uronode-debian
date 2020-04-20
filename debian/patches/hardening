@@ -5,9 +5,12 @@ Last-Update: 2017-08-22
 
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -3,8 +3,11 @@
+@@ -1,10 +1,13 @@
+ all: nodeusers uronode axdigi calibrate @FLEXNET@
+ 
  CC = gcc
- LD = gcc
+-LD = gcc
++LD = $(CC)
  # CFLAGS = -O2 -g -s -Wno-unused-result -Wstrict-prototypes
 -CFLAGS = -DUNIX -g3 -DDEBUG
 -LDFLAGS =
