@@ -1,12 +1,14 @@
-uronode (2.11-1) UNRELEASED; urgency=medium
+uronode (2.12-1) UNRELEASED; urgency=medium
 
-  * New upstream update
+  * New upstream update to 2.12
     - Patches Refreshed
   * Removed makefile-install-locations patch
   * Fixed lots of patch conflicts and funk
   * Added gitlab CI
+  * Added multiple-definition.patch to build in gcc10
+    - Closes: #957902
 
- -- Dave Hibberd <d@vehibberd.com>  Mon, 20 Apr 2020 03:25:08 +0100
+ -- Dave Hibberd <d@vehibberd.com>  Sun, 20 Sep 2020 14:34:24 +0100
 
 uronode (2.10-1) unstable; urgency=medium
   * New upstream update
