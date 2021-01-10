@@ -1,13 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: uronode
-Source: http://sourceforge.net/projects/uronode/files/uronode-2.3.1.tar.gz/download
+Source: http://sourceforge.net/projects/uronode/files
 
 Files: *
-Copyright: (C) 1998-2015 Brian Rodgers N1URO <n1uro@n1uro.ampr.org>
+Copyright: (C) 1998-2020 Brian Rodgers N1URO <n1uro@n1uro.ampr.org>
 License: GPL-2+
 
 Files: debian/*
-Copyright: (C) 2015 Dave Hibberd <d@vehibberd.com>
+Copyright: (C) 2015-2021 Dave Hibberd <d@vehibberd.com>
 License: GPL-2+
 
 License: GPL-2+
