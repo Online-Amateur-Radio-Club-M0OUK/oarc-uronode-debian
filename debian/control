@@ -7,7 +7,7 @@ Build-Depends: debhelper-compat (= 13), libax25-dev
 Standards-Version: 4.5.1
 Vcs-Browser: https://salsa.debian.org/debian-hamradio-team/uronode
 Vcs-Git: https://salsa.debian.org/debian-hamradio-team/uronode.git
-Homepage: http://uronode.sourceforge.net/
+Homepage: https://uronode.sourceforge.net/
 Rules-Requires-Root: no
 
 Package: uronode
