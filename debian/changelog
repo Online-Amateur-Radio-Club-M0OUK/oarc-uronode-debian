@@ -1,5 +1,8 @@
-uronode (2.12-1) UNRELEASED; urgency=medium
+uronode (2.12-1) unstable; urgency=medium
 
+  * Team upload
+
+  [ Dave Hibberd ]
   * New upstream update to 2.12
     - Patches Refreshed
   * Removed makefile-install-locations patch
@@ -8,7 +11,16 @@ uronode (2.12-1) UNRELEASED; urgency=medium
   * Added multiple-definition.patch to build in gcc10
     - Closes: #957902
 
- -- Dave Hibberd <d@vehibberd.com>  Sun, 20 Sep 2020 14:34:24 +0100
+  [ tony mancill ]
+  * Update debian/watch to version 4
+  * Commit upstream version 2.12 to upstream and pristine-tar branches
+  * Bump Standards-Version to 4.5.1
+  * Set Rules-Requires-Root: no in debian/control
+  * Freshen debian/copyright
+  * Use debhelper-compat 13
+  * Use https URL for Homepage in debian/control
+
+ -- tony mancill <tmancill@debian.org>  Sun, 10 Jan 2021 13:51:11 -0800
 
 uronode (2.10-1) unstable; urgency=medium
   * New upstream update
