@@ -1,3 +1,13 @@
+uronode (2.13-1) UNRELEASED; urgency=medium
+
+  * New upstream Update to 2.13
+    - Patches Refreshed
+  * Config files now live in /var/lib/ax25
+    - Cleared lintian override
+    - Added news file
+
+ -- Dave Hibberd <d@vehibberd.com>  Wed, 27 Jan 2021 21:33:36 +0000
+
 uronode (2.12-1) unstable; urgency=medium
 
   * Team upload

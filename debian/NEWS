@@ -1,0 +1,10 @@
+uronode (2.13-1) unstable; urgency=medium
+
+  From this version on, upstream have changed running files from /var/ax25/ to
+  /var/lib/ax25. It is recommended by upstream to migrate your current
+  /var/ax25/node/* files to /var/lib/ax25/node/* after upgrade. 
+  If you do not do this, your help files, ROSE directory and user logs shall
+  be considered fresh and reset, with all users being treated as if they are
+  new and connecting for the first time.
+
+ -- Dave Hibberd <d@vehibberd.com>  Wed, 27 Jan 2021 21:33:36 +0000
