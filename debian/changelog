@@ -1,3 +1,9 @@
+uronode (2.13-2) unstable; urgency=medium
+
+  * Fix runtime bug introduced by changes in folder-update patch for 2.12-1
+
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 02 Feb 2021 00:18:52 +0000
+
 uronode (2.13-1) unstable; urgency=medium
 
   * New upstream Update to 2.13
