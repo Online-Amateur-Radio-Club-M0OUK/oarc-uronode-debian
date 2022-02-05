@@ -1,3 +1,12 @@
+uronode (2.15-1) UNRELEASED; urgency=medium
+
+  * New upstream version 2.15
+  * Standards bump to 4.6.0.1
+  * Multiple definition patch removed
+    - Included upstream
+
+ -- Dave Hibberd <d@vehibberd.com>  Sat, 05 Feb 2022 11:58:10 +0000
+
 uronode (2.13-2) unstable; urgency=medium
 
   * Fix runtime bug introduced by changes in folder-update patch for 2.12-1
