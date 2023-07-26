@@ -2,6 +2,7 @@
 
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 export NON_INTERACTIVE=1
+export DEB_CONFIGURE_EXTRA_FLAGS=--without-flexnet --without-tcpip --without-rose --without-autorouter --without-mheard
 
 %:
 	dh $@
