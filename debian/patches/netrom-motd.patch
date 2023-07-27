@@ -1,0 +1,17 @@
+--- a/node.c
++++ b/node.c
+@@ -302,6 +302,14 @@
+ #ifdef HAVEMOTD
+   if (User.ul_type == AF_NETROM) {
+     /*		axio_printf(NodeIo, "%s} Welcome.\n", NodeId);  */
++      if (check_perms(PERM_ANSI, 0L) != -1) {
++	node_msg("\e[01;34m[\e[01;37m%s\e[01;34m]\e[0m - Welcome to %s", VERSION, FlexId);
++      } else
++	node_msg("%s - Welcome to %s", VERSION, FlexId); 
++      if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
++	while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
++	axio_puts ("\n",NodeIo);
++      }
+   } else 
+     if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
+       if (check_perms(PERM_ANSI, 0L) != -1) { 
