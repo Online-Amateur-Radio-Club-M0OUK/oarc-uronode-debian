@@ -16,3 +16,13 @@ Last-Update: 2018-02-10
  _sleep()
  {
    [ "$NON_INTERACTIVE" = 1 ] || sleep "$@"
+@@ -122,6 +116,9 @@
+ 	if [ $? -ne 1 ]
+ 	then
+ 		HAVEAX25="#define HAVE_AX25	1"
++		#These have been moved out of tcp-ip so I have an MOTD when I don't build telnet in
++		HAVEMOTD="#define HAVEMOTD"
++		MOTDPATH='"/etc/ax25/uronode.motd"'
+ 	fi
+ 	#
+ #        echo -n "Include support for the FlexNet protocol ? [Y/n]: "; read answer

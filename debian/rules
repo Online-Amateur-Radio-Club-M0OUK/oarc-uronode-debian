@@ -9,7 +9,7 @@ export NON_INTERACTIVE=1
 # Remove things we aren't using in oarc. mheard is a bug awaiting a fix.
 
 override_dh_auto_configure:
-	dh_auto_configure -- --without-flexnet --without-tcpip --without-rose --without-autorouter --without-mheard
+	dh_auto_configure -- --without-flexnet --without-tcpip --without-rose --without-autorouter
 
 # Collapse upstream changes file into single file
 
