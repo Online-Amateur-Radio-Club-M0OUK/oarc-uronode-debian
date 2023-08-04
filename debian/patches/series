@@ -1,5 +1,6 @@
 netrom-motd.patch
 non-interactive-install.patch
+zlib-ifdef.patch
 hardening
 folder-update
 install-dir-creation
