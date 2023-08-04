@@ -1,17 +1,60 @@
 --- a/node.c
 +++ b/node.c
-@@ -302,6 +302,14 @@
+@@ -301,42 +301,19 @@
+   node_log(LOGLVL_LOGIN, "%s @ %s logged in", User.call, User.ul_name);
  #ifdef HAVEMOTD
    if (User.ul_type == AF_NETROM) {
++	  axio_printf(NodeIo, "Fit like eh day. \n");
      /*		axio_printf(NodeIo, "%s} Welcome.\n", NodeId);  */
-+      if (check_perms(PERM_ANSI, 0L) != -1) {
-+	node_msg("\e[01;34m[\e[01;37m%s\e[01;34m]\e[0m - Welcome to %s", VERSION, FlexId);
-+      } else
-+	node_msg("%s - Welcome to %s", VERSION, FlexId); 
-+      if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
-+	while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
-+	axio_puts ("\n",NodeIo);
+-  } else 
+-    if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
+-      if (check_perms(PERM_ANSI, 0L) != -1) { 
+-	node_msg("\n\e[01;34m[\e[01;37m%s\e[01;34m]\e[0m\nWelcome %s to the %s packet shell.", VERSION, User.call, HostName);
+-      } else if (check_perms(PERM_ANSI, 0L) == -1) {
+-	node_msg("\n[%s]\nWelcome %s to the %s packet shell.", VERSION, User.call, HostName);
+-      }
+-      if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
+-	while (fgets(buf,256, fp) != NULL) axio_puts(buf,NodeIo);
+-	axio_printf (NodeIo, "\n");
+-/*	axio_flush(NodeIo); */
+-      }
+-    } else if (User.ul_type == AF_AX25) { 
+-      if (check_perms(PERM_ANSI, 0L) != -1) {
++      /* if (check_perms(PERM_ANSI, 0L) != -1) {
+ 	node_msg("\e[01;34m[\e[01;37m%s\e[01;34m]\e[0m - Welcome to %s", VERSION, FlexId);
+       } else
+ 	node_msg("%s - Welcome to %s", VERSION, FlexId); 
+       if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
+ 	while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
+ 	axio_puts ("\n",NodeIo);
+-/*	axio_flush(NodeIo); */
+-      } 
+-    } else if (User.ul_type == AF_ROSE) {
+-	node_msg("%s - Welcome to %s", VERSION, RoseId);
+-        if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
+-        while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
+-        axio_puts ("\n",NodeIo);
+-/*        axio_flush(NodeIo); */
+-      }      
+-    }
+-  lastlog();
+-#endif
+-  axio_flush(NodeIo);
+-  while (1) { if (User.ul_type != AF_NETROM) {
+-      axio_flush(NodeIo);
 +      }
-   } else 
-     if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
-       if (check_perms(PERM_ANSI, 0L) != -1) { 
++      */
++  } else 
++    if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
+       if (check_perms(PERM_ANSI, 0L) != -1) {
+ 	axio_printf(NodeIo,"\e[01;34m");
+       }
+@@ -362,7 +339,7 @@
+ 	  else if ((User.ul_type != AF_NETROM) && (User.ul_type != AF_ROSE)) {
+ 	    node_prompt();
+ 	  } else if ((User.ul_type == AF_NETROM) || (User.ul_type == AF_ROSE)) {
+-	    axio_printf(NodeIo,"\n");
++		node_prompt();
+ 	  }
+ 	}
+     }
