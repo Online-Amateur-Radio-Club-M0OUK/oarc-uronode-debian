@@ -21,3 +21,14 @@
      }
      if (check_perms(PERM_ANSI, 0L) != -1) {
        /* Not needed from what I see so far.        */
+--- a/command.c
++++ b/command.c
+@@ -137,7 +137,7 @@
+     }
+   }
+   if (User.ul_type == AF_NETROM) {
+-    axio_printf(NodeIo,"");
++    axio_printf(NodeIo,"%s, thank you for connecting to the %s\nURONode netrom shell. Come back soon, 73!\n",User.call, NodeId);
+   } 
+   if (User.ul_type == AF_ROSE) {
+       if (check_perms(PERM_ANSI, 0L) != -1) {
