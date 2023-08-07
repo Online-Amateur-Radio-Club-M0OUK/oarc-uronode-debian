@@ -1,0 +1,23 @@
+Description: Fix zlib ifdef to ensure it builds right
+Author: Dave Hibberd <d@vehibberd.com>
+Last-Update: 2023-08-07
+
+--- a/configure
++++ b/configure
+@@ -74,14 +74,14 @@
+ _sleep 1
+ echo -n "Checking for the existence of the Zlib headers... "
+ ZLIB=""
+-HAVEZLIB="#undef HAVE_ZLIB"
++HAVEZLIB="#undef HAVE_ZLIB_H"
+ for zlibdir in /usr/include /usr/local/include
+ do
+ 	if [ -f $zlibdir/zlib.h ]
+ 	then
+ 		echo $zlibdir/zlib.h
+ 		ZLIB="-lz"
+-		HAVEZLIB="#define HAVE_ZLIB	1"
++		HAVEZLIB="#define HAVE_ZLIB_H	1"
+ 	fi
+ done
+ if [ -z "$ZLIB" ]

@@ -1,0 +1,38 @@
+Description: Add in motd functionality for Netrom
+Author: Dave Hibberd <d@vehibberd.com>
+Last-Update: 2023-08-07
+
+--- a/node.c
++++ b/node.c
+@@ -301,6 +301,11 @@
+   node_log(LOGLVL_LOGIN, "%s @ %s logged in", User.call, User.ul_name);
+ #ifdef HAVEMOTD
+   if (User.ul_type == AF_NETROM) {
++	node_msg("%s - Welcome to %s", VERSION, NodeId); 
++		if ((fp = fopen(HAVEMOTD, "r")) != NULL) {
++		while (fgets(buf, 256, fp) != NULL) axio_puts(buf,NodeIo);
++		axio_puts ("\n",NodeIo);
++	}
+     /*		axio_printf(NodeIo, "%s} Welcome.\n", NodeId);  */
+   } else 
+     if ((User.ul_type == AF_INET) || (User.ul_type == AF_INET6)) {
+@@ -365,6 +370,8 @@
+ 	    axio_printf(NodeIo,"\n");
+ 	  }
+ 	}
++    } else {
++	    node_prompt();
+     }
+     if (check_perms(PERM_ANSI, 0L) != -1) {
+       /* Not needed from what I see so far.        */
+--- a/command.c
++++ b/command.c
+@@ -137,7 +137,7 @@
+     }
+   }
+   if (User.ul_type == AF_NETROM) {
+-    axio_printf(NodeIo,"");
++    axio_printf(NodeIo,"%s, thank you for connecting to the %s\nURONode netrom shell. Come back soon, 73!\n",User.call, NodeId);
+   } 
+   if (User.ul_type == AF_ROSE) {
+       if (check_perms(PERM_ANSI, 0L) != -1) {
