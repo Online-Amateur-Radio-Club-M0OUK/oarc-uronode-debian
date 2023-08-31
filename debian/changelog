@@ -1,3 +1,9 @@
+uronode (2.15-2~bpo11+1) bullseye; urgency=medium
+
+  * Rebuild for bullseye-backports.
+
+ -- Dave Hibberd <d@vehibberd.com>  Thu, 31 Aug 2023 23:29:37 +0100
+
 uronode (2.15-2) unstable; urgency=medium
 
   * Add zlib to control and patch in correct ifdef to configure
