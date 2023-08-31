@@ -1,4 +1,4 @@
-uronode (2.15-2) unstable; urgency=medium
+uronode (2.15-jammy1) jammy; urgency=medium
 
   * Add zlib to control and patch in correct ifdef to configure
   * Add netrom MOTD patch 
