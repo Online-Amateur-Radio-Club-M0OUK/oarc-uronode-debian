@@ -1,9 +1,9 @@
-uronode (2.15-3) UNRELEASED; urgency=medium
+uronode (2.15-3) unstable; urgency=medium
 
   * Patching mheardd.dat location
     - this should fix jh and jl functionality
 
- -- Dave Hibberd <d@vehibberd.com>  Tue, 12 Sep 2023 22:09:52 +0100
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 12 Sep 2023 22:37:21 +0100
 
 uronode (2.15-2) unstable; urgency=medium
 
