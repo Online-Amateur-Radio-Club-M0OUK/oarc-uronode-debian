@@ -1,3 +1,9 @@
+uronode (2.15-3~bpo12+1) bookworm; urgency=medium
+
+  * Rebuild for bookworm.
+
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 12 Sep 2023 22:39:15 +0100
+
 uronode (2.15-3) unstable; urgency=medium
 
   * Patching mheardd.dat location
