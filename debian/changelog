@@ -1,3 +1,9 @@
+uronode (2.15-3+jammy1) jammy; urgency=medium
+
+  * Rebuild for jammy.
+
+ -- Dave Hibberd <d@vehibberd.com>  Tue, 12 Sep 2023 22:43:32 +0100
+
 uronode (2.15-3) unstable; urgency=medium
 
   * Patching mheardd.dat location
